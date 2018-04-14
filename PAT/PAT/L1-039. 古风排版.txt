@@ -1,0 +1,76 @@
+L1-039. 古风排版
+时间限制
+400 ms
+内存限制
+65536 kB
+代码长度限制
+8000 B
+判题程序
+Standard
+作者
+陈越
+中国的古人写文字，是从右向左竖向排版的。本题就请你编写程序，把一段文字按古风排版。
+
+输入格式：
+
+输入在第一行给出一个正整数N（<100），是每一列的字符数。第二行给出一个长度不超过1000的非空字符串，以回车结束。
+
+输出格式：
+
+按古风格式排版给定的字符串，每列N个字符（除了最后一列可能不足N个）
+
+输入样例：
+4
+This is a test case
+输出样例：
+asa T
+st ih
+e tsi
+ ce s
+ 
+ 
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+    int i, n, l, j, k;
+    char a[1000];
+    char b[1000][1000]={' '};
+    scanf("%d", &n);
+    getchar();
+    gets(a);
+    l = strlen(a);
+    if(l%n!=0){
+        while(l%n!=0){
+            a[l] = ' ';
+            l++;
+        }
+    }
+    for(i=1;i<n;i++){
+        k=0;
+        for(j=0;j<l;j++){
+            if((j+1)%n==i){
+                b[i][k] = a[j];
+                k++;
+            }
+        }
+    }
+    k=0;
+    for(j=0;j<l;j++){
+        if((j+1)%n==0){
+            b[n][k] = a[j];
+            k++;
+        }
+    }
+    for(i=1;i<=n;i++){
+        for(j=l/n-1;j>=0;j--){
+            printf("%c", b[i][j]);
+        }
+        if(i!=n){
+            printf("\n");
+        }
+    }
+    return 0;
+}

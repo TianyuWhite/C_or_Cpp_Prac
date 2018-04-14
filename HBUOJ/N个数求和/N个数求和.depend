@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1515207486 source:f:\bailing\hbuoj\n个数求和\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1515210192 source:f:\bailing\hbuoj\n个数求和\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

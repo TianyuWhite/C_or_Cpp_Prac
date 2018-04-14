@@ -1,0 +1,89 @@
+1014. 福尔摩斯的约会 (20)
+时间限制
+100 ms
+内存限制
+65536 kB
+代码长度限制
+8000 B
+判题程序
+Standard
+作者
+CHEN, Yue
+大侦探福尔摩斯接到一张奇怪的字条：“我们约会吧！ 3485djDkxh4hhGE 2984akDfkkkkggEdsb s&hgsfdk d&Hyscvnm”。大侦探很快就明白了，字条上奇怪的乱码实际上就是约会的时间“星期四 14:04”，因为前面两字符串中第1对相同的大写英文字母（大小写有区分）是第4个字母'D'，代表星期四；第2对相同的字符是'E'，那是第5个英文字母，代表一天里的第14个钟头（于是一天的0点到23点由数字0到9、以及大写字母A到N表示）；后面两字符串第1对相同的英文字母's'出现在第4个位置（从0开始计数）上，代表第4分钟。现给定两对字符串，请帮助福尔摩斯解码得到约会的时间。
+
+输入格式：
+
+输入在4行中分别给出4个非空、不包含空格、且长度不超过60的字符串。
+
+输出格式：
+
+在一行中输出约会的时间，格式为“DAY HH:MM”，其中“DAY”是某星期的3字符缩写，即MON表示星期一，TUE表示星期二，WED表示星期三，THU表示星期四，FRI表示星期五，SAT表示星期六，SUN表示星期日。题目输入保证每个测试存在唯一解。
+
+输入样例：
+3485djDkxh4hhGE 
+2984akDfkkkkggEdsb 
+s&hgsfdk 
+d&Hyscvnm
+输出样例：
+THU 14:04
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main(){
+    char s1[60], s2[60], s3[60], s4[60], s[3];
+    char date[7][3]={"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+    gets(s1);
+    gets(s2);
+    gets(s3);
+    gets(s4);
+    int l1, l2, l3, l4, i, c1=0, m, n;
+    l1 = strlen(s1);
+    l2 = strlen(s2);
+    l3 = strlen(s3);
+    l4 = strlen(s4);
+    for(i=0;i<l1&&i<l2;i++){
+        if(s1[i]==s2[i]){
+            if(s1[i]>='A'&&s1[i]<='G'&&c1==0){
+                s[c1] = s1[i];
+                c1++;
+            }
+            else if(((s1[i]>='A'&&s1[i]<='N')||(s1[i]>='0'&&s1[i]<='9'))&&c1==1){
+                s[c1] = s1[i];
+                c1++;
+            }
+            if(c1==2){
+                break;
+            }
+        }
+    }
+    for(i=0;i<l3&&i<l4;i++){
+        if(s3[i]==s4[i]&&((s3[i]>='A'&&s3[i]<='Z')||(s3[i]>='a'&&s3[i]<='z'))){
+            m = i;
+            break;
+        }
+    }
+    n = s[0]-'A';
+    //printf("%d", n);
+    for(i=0;i<3;i++){
+        printf("%c", date[n][i]);
+    }
+    printf(" ");
+    if(s[1]>='0'&&s[1]<='9'&&m<10){
+        printf("0%d:0%d", s[1]-'0', m);
+    }
+    else if(s[1]>='0'&&s[1]<='9'&&m>=10){
+        printf("0%d:%d", s[1]-'0', m);
+    }
+    else if(s[1]>='A'&&s[1]<='N'&&m<10){
+        printf("%d:0%d", s[1]-'A'+10, m);
+    }
+    else if(s[1]>='A'&&s[1]<='N'&&m>=10){
+        printf("%d:%d", s[1]-'A'+10, m);
+    }
+    return 0;
+}

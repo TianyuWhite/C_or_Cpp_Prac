@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char num[10000];
+    scanf("%s", &num);
+    int l = strlen(num), i, sum=0, n[10000], j=0;
+    for(i=0;i<l;i++){
+        switch(num[i]){
+        case '0':
+            sum = sum + 0;
+            break;
+        case '1':
+            sum = sum + 1;
+            break;
+        case '2':
+            sum = sum + 2;
+            break;
+        case '3':
+            sum = sum + 3;
+            break;
+        case '4':
+            sum = sum + 4;
+            break;
+        case '5':
+            sum = sum + 5;
+            break;
+        case '6':
+            sum = sum + 6;
+            break;
+        case '7':
+            sum = sum + 7;
+            break;
+        case '8':
+            sum = sum + 8;
+            break;
+        case '9':
+            sum = sum + 9;
+            break;
+        }
+    }
+    while(sum!=0){
+        n[j] = sum%10;
+        j++;
+        sum = sum / 10;
+    }
+    for(i=j-1;i>=0;i--){
+        switch(n[i]){
+        case 0:
+            if(i!=0){
+                printf("ling ");
+            }
+            else{
+                printf("ling");
+            }
+            break;
+        case 1:
+            if(i!=0){
+                printf("yi ");
+            }
+            else{
+                printf("yi");
+            }
+            break;
+        case 2:
+            if(i!=0){
+                printf("er ");
+            }
+            else{
+                printf("er");
+            }
+            break;
+        case 3:
+           if(i!=0){
+                printf("san ");
+            }
+            else{
+                printf("san");
+            }
+            break;
+        case 4:
+            if(i!=0){
+                printf("si ");
+            }
+            else{
+                printf("si");
+            }
+            break;
+        case 5:
+            if(i!=0){
+                printf("wu ");
+            }
+            else{
+                printf("wu");
+            }
+            break;
+        case 6:
+           if(i!=0){
+                printf("liu ");
+            }
+            else{
+                printf("liu");
+            }
+            break;
+        case 7:
+            if(i!=0){
+                printf("qi ");
+            }
+            else{
+                printf("qi");
+            }
+            break;
+        case 8:
+            if(i!=0){
+                printf("ba ");
+            }
+            else{
+                printf("ba");
+            }
+            break;
+        case 9:
+            if(i!=0){
+                printf("jiu ");
+            }
+            else{
+                printf("jiu");
+            }
+            break;
+        }
+    }
+    return 0;
+}
