@@ -1,0 +1,129 @@
+7-16 古风排版（20 分）
+中国的古人写文字，是从右向左竖向排版的。本题就请你编写程序，把一段文字按古风排版。
+
+输入格式：
+输入在第一行给出一个正整数N（<100），是每一列的字符数。第二行给出一个长度不超过1000的非空字符串，以回车结束。
+
+输出格式：
+按古风格式排版给定的字符串，每列N个字符（除了最后一列可能不足N个）。
+
+输入样例：
+4
+This is a test case
+输出样例：
+asa T
+st ih
+e tsi
+ ce s
+
+
+
+/*c++string*/
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n, l;
+    string s;
+    cin>>n;
+    getchar();
+    getline(cin, s);
+    l = s.length();
+    if(l%n!=0){
+        for(int i=0;i<(((l/n)+1)*n-l);i++){
+            s = s + " ";
+        }
+    }
+    l = s.length();
+    for(int j=0;j<n;j++){
+        for(int i=l-1;i>=0;i--){
+            if(i%n==j){
+                cout<<s[i];
+            }
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+
+
+/*c语言char数组*/
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, l, i, j;
+    char s[10000];
+    scanf("%d", &n);
+    getchar();
+    gets(s);
+    l = strlen(s);
+    int l0 = l;
+    if(l%n!=0){
+        while(l%n!=0){
+            s[l] = ' ';
+            l++;
+        }
+    }
+    for(j=0;j<n;j++){
+        for(i=l-1;i>=0;i--){
+            if(i%n==j){
+                printf("%c", s[i]);
+            }
+        }
+        if(j!=n-1){
+          printf("\n");
+        }
+    }
+    return 0;
+}
+
+
+/*c语言（早期复杂版）*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+    int i, n, l, j, k;
+    char a[10000];
+    char b[1008][1008]={' '};
+    scanf("%d", &n);
+    getchar();
+    gets(a);
+    l = strlen(a);
+    if(l%n!=0){
+        while(l%n!=0){
+            a[l] = ' ';
+            l++;
+        }
+    }
+    for(i=1;i<n;i++){
+        k=0;
+        for(j=0;j<l;j++){
+            if((j+1)%n==i){
+                b[i][k] = a[j];
+                k++;
+            }
+        }
+    }
+    k=0;
+    for(j=0;j<l;j++){
+        if((j+1)%n==0){
+            b[n][k] = a[j];
+            k++;
+        }
+    }
+    for(i=1;i<=n;i++){
+        for(j=l/n-1;j>=0;j--){
+            printf("%c", b[i][j]);
+        }
+        if(i!=n){
+            printf("\n");
+        }
+    }
+    return 0;
+}

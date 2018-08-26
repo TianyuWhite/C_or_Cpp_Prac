@@ -1,0 +1,66 @@
+7-40 求链式线性表的倒数第K项（20 分）
+给定一系列正整数，请设计一个尽可能高效的算法，查找倒数第K个位置上的数字。
+
+输入格式:
+输入首先给出一个正整数K，随后是若干正整数，最后以一个负整数表示结尾（该负数不算在序列内，不要处理）。
+
+输出格式:
+输出倒数第K个位置上的数据。如果这个位置不存在，输出错误信息NULL。
+
+输入样例:
+4 1 2 3 4 5 6 7 8 9 0 -1
+输出样例:
+7
+
+
+/*数组*/
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int s[10000000];
+int main()
+{
+
+    int k, n, l=0;
+    scanf("%d %d", &k, &n);
+    while(n>=0){
+        s[l]=n;
+        l++;
+        scanf("%d", &n);
+    }
+    if(k>l){
+        printf("NULL");
+    }
+    else{
+        printf("%d", s[l-k]);
+    }
+    return 0;
+}
+
+
+
+/*栈*/
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    stack<int> s;
+    int k, n;
+    scanf("%d %d",&k, &n);
+    while(n>=0){
+        s.push(n);
+        scanf("%d", &n);
+    }
+    if(k>s.size()){
+        printf("NULL");
+    }
+    else{
+        for(int i=1;i<k;i++){
+            s.pop();
+        }
+        printf("%d", s.top());
+    }
+    return 0;
+}

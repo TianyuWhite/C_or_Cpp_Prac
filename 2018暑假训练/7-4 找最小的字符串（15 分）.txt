@@ -1,0 +1,45 @@
+7-4 找最小的字符串（15 分）
+本题要求编写程序，针对输入的N个字符串，输出其中最小的字符串。
+
+输入格式：
+输入第一行给出正整数N；随后N行，每行给出一个长度小于80的非空字符串，其中不会出现换行符，空格，制表符。
+
+输出格式：
+在一行中用以下格式输出最小的字符串：
+
+Min is: 最小字符串
+输入样例：
+5
+Li
+Wang
+Zha
+Jin
+Xian
+输出样例：
+Min is: Jin
+
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    string s;
+    string mins;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>s;
+        if(i==0){
+            mins=s;
+        }
+        else{
+            if(s<mins){
+                mins = s;
+            }
+        }
+    }
+    cout<<"Min is: "<<mins<<endl;
+    return 0;
+}

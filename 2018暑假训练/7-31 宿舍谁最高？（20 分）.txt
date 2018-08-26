@@ -1,0 +1,70 @@
+7-31 宿舍谁最高？（20 分）提问
+学校选拔篮球队员，每间宿舍最多有4个人。现给出宿舍列表，请找出每个宿舍最高的同学。定义一个学生类Student,有身高height，体重weight等。
+
+输入格式:
+首先输入一个整型数n （1<=n<=1000000），表示n位同学。
+紧跟着n行输入,每一行格式为：宿舍号，name,height,weight。
+宿舍号的区间为[0,999999]， name 由字母组成，长度小于16，height，weight为正整数。
+
+输出格式:
+按宿舍号从小到大排序，输出每间宿舍身高最高的同学信息。题目保证每间宿舍只有一位身高最高的同学。
+
+输入样例:
+7
+000000 Tom 175 120
+000001 Jack 180 130
+000001 Hale 160 140
+000000 Marry 160 120
+000000 Jerry 165 110
+000003 ETAF 183 145
+000001 Mickey 170 115
+输出样例:
+000000 Tom 175 120
+000001 Jack 180 130
+000003 ETAF 183 145
+
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+struct per{
+    long id; 
+    string name;
+    int height;
+    int weight;
+}p[100000];
+
+bool cmp(per p1, per p2){
+    return p1.id<p2.id;
+}
+
+int main()
+{
+    int n, max=0, maxn;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>p[i].id>>p[i].name>>p[i].height>>p[i].weight;
+    }
+    sort(p, p+n, cmp);
+    max = p[0].height;
+    maxn = 0;
+    for(int i=1;i<n;i++){
+        if(p[i].id==p[i-1].id){
+            if(p[i].height>max){
+                max = p[i].height;
+                maxn = i;
+            }
+        }
+        else{
+            printf("%06ld ", p[maxn].id);
+            cout<<p[maxn].name<<" "<<p[maxn].height<<" "<<p[maxn].weight<<endl;
+            max = p[i].height;
+            maxn = i;
+        }
+    }
+    printf("%06ld ", p[maxn].id);
+    cout<<p[maxn].name<<" "<<p[maxn].height<<" "<<p[maxn].weight<<endl;
+    //cout<<p[maxn].id<<" "<<p[maxn].name<<" "<<p[maxn].height<<" "<<p[maxn].weight<<endl;
+    return 0;
+}

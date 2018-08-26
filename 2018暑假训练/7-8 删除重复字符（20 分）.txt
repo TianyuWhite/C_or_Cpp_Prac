@@ -1,0 +1,58 @@
+7-8 删除重复字符（20 分）
+本题要求编写程序，将给定字符串去掉重复的字符后，按照字符ASCII码顺序从小到大排序后输出。
+
+输入格式：
+输入是一个以回车结束的非空字符串（少于80个字符）。
+
+输出格式：
+输出去重排序后的结果字符串。
+
+输入样例：
+ad2f3adjfeainzzzv
+输出样例：
+23adefijnvz
+
+
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    char c;
+    set<char> s;
+    //set<char>::iterator it = s.begin();
+    while((c=getchar())!='\n'){
+        s.insert(c);
+    }
+    while(!s.empty()){
+        cout<<*s.begin();
+        s.erase(s.begin());
+    }
+    cout<<endl;
+    return 0;
+}
+
+
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    char c;
+    set<char> s;
+    set<char>::iterator it;
+    while((c=getchar())!='\n'){
+        s.insert(c);
+    }
+    it=s.begin();
+    while(it!=s.end()){
+        cout<<*it;
+        ++it;
+    }
+    cout<<endl;
+    return 0;
+}
